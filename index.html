@@ -99,7 +99,7 @@
 				});
 				google.maps.event.addListener(map, 'click', function (click) {
 					marker2.setPosition(click.latLng);
-					var apiUrl4 = "http://api.openweathermap.org/data/2.5/weather?lat=" + click.latLng.lat() + "&lon=" + click.latLng.lng();
+					var apiUrl4 = "http://api.openweathermap.org/data/2.5/weather?lat=" + click.latLng.lat() + "&lon=" + click.latLng.lng() + "&APPID=23e396f2ce44b26ef2f7b371af53f5a4";
 					$.getJSON(apiUrl4, function(data4) {
 						cityName4.innerHTML = "click: " + data4.coord.lon + ", " + data4.coord.lat + "<br>" + "api location: " + data4.name + "<br>" + ((data4.main.temp - 273.15).toFixed(2)) + "°C";
 						infoWindow1.setContent(data4.name + "<br>" + ((data4.main.temp - 273.15).toFixed(2)) + "°C");
@@ -107,7 +107,7 @@
 					});	
 				});
 				google.maps.event.addListener(marker2, 'drag', function() {
-					var apiUrl4 = "http://api.openweathermap.org/data/2.5/weather?lat=" + marker2.getPosition().lat() + "&lon=" + marker2.getPosition().lng();
+					var apiUrl4 = "http://api.openweathermap.org/data/2.5/weather?lat=" + marker2.getPosition().lat() + "&lon=" + marker2.getPosition().lng() + "&APPID=23e396f2ce44b26ef2f7b371af53f5a4";
 					$.getJSON(apiUrl4, function(data4) { 
 						cityName4.innerHTML = "drag[2]: " + data4.coord.lon + ", " + data4.coord.lat + "<br>" + "api location: " + data4.name + "<br>" + ((data4.main.temp - 273.15).toFixed(2)) + "°C";
 						infoWindow1.setContent(data4.name + "<br>" + ((data4.main.temp - 273.15).toFixed(2)) + "°C");
@@ -139,7 +139,7 @@
 				}
 				function weatherDispaly() {
 				    if (city != -1) {
-					    var apiUrl2 = "http://api.openweathermap.org/data/2.5/weather?q=" + city ;
+					    var apiUrl2 = "http://api.openweathermap.org/data/2.5/weather?q=" + city  + "&APPID=23e396f2ce44b26ef2f7b371af53f5a4";
 					    $.getJSON(apiUrl2, function(data2) {
 					    	var inputLatlng = {
 					    		lat: data2.coord.lat,
@@ -155,7 +155,7 @@
 					}
 				}
 				google.maps.event.addListener(marker3, 'drag', function() {
-					var apiUrl2 = "http://api.openweathermap.org/data/2.5/weather?lat=" + marker3.getPosition().lat() + "&lon=" + marker3.getPosition().lng();
+					var apiUrl2 = "http://api.openweathermap.org/data/2.5/weather?lat=" + marker3.getPosition().lat() + "&lon=" + marker3.getPosition().lng() + "&APPID=23e396f2ce44b26ef2f7b371af53f5a4";
 					$.getJSON(apiUrl2, function(data2) { 
 						cityName2.innerHTML = "drag[3]: " + data2.coord.lon + ", " + data2.coord.lat + "<br>" + "api location: " + data2.name + "<br>" + ((data2.main.temp - 273.15).toFixed(2)) + "°C";
 						infoWindow3.setContent(data2.name + "<br>" + ((data2.main.temp - 273.15).toFixed(2)) + "°C");
@@ -186,7 +186,7 @@
 						label: "1"
 					});
 					google.maps.event.addListener(marker1, 'drag', function() {
-						var apiUrl5 = "http://api.openweathermap.org/data/2.5/weather?lat=" + marker1.getPosition().lat() + "&lon=" + marker1.getPosition().lng();
+						var apiUrl5 = "http://api.openweathermap.org/data/2.5/weather?lat=" + marker1.getPosition().lat() + "&lon=" + marker1.getPosition().lng() + "&APPID=23e396f2ce44b26ef2f7b371af53f5a4";
 						$.getJSON(apiUrl5, function(data5) { 
 							cityName5.innerHTML = "drag[1]: " + data5.coord.lon + ", " + data5.coord.lat + "<br>" + "api location: " + data5.name + "<br>" + ((data5.main.temp - 273.15).toFixed(2)) + "°C"; 
 						infoWindow2.setContent(data5.name + "<br>" + ((data5.main.temp - 273.15).toFixed(2)) + "°C");
@@ -196,7 +196,7 @@
 					//--------------------------------------------------
 
 					//display weather when located--------------------
-					var apiUrl3 = "http://api.openweathermap.org/data/2.5/weather?lat=" + (pos.lat.toFixed(2)) + "&lon=" + (pos.lng.toFixed(2));
+					var apiUrl3 = "http://api.openweathermap.org/data/2.5/weather?lat=" + (pos.lat.toFixed(2)) + "&lon=" + (pos.lng.toFixed(2)) + "&APPID=23e396f2ce44b26ef2f7b371af53f5a4";
 					$.getJSON(apiUrl3, function(data3) { 
 						cityName3.innerHTML = "location: " + (pos.lat.toFixed(2)) + ", " + (pos.lng.toFixed(2)) + "<br>" + "api location: " + data3.name + "<br>" + ((data3.main.temp - 273.15).toFixed(2)) + "°C";
 						infoWindow2.setContent(data3.name + "<br>" + ((data3.main.temp - 273.15).toFixed(2)) + "°C");
