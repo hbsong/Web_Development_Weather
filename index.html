@@ -51,11 +51,11 @@
 
             <div class="float"><img id="android_qr" style="clear: left; margin: 2% 0 0 65%; height: 30%; width: 30%;" src=""></div>			
 
-			<p style="background: rgba(255,255,255,0.7); position: absolute; left: 10%; top: 20%;" id="city-name"></p>
-			<p style="background: rgba(255,255,255,0.7); position: absolute; left: 10%; top: 30%;" id="city-name2"></p>
-			<p style="background: rgba(255,255,255,0.7); position: absolute; left: 10%; top: 40%;" id="city-name3"></p>
-			<p style="background: rgba(255,255,255,0.7); position: absolute; left: 10%; top: 50%;" id="city-name4"></p>
-			<p style="background: rgba(255,255,255,0.7); position: absolute; left: 10%; top: 60%;" id="city-name5"></p>
+			<p style="background: rgba(255,255,255,0.8); position: absolute; left: 10%; top: 20%;" id="city-name"></p>
+			<p style="background: rgba(255,255,255,0.8); position: absolute; left: 10%; top: 30%;" id="city-name2"></p>
+			<p style="background: rgba(255,255,255,0.8); position: absolute; left: 10%; top: 40%;" id="city-name3"></p>
+			<p style="background: rgba(255,255,255,0.8); position: absolute; left: 10%; top: 50%;" id="city-name4"></p>
+			<p style="background: rgba(255,255,255,0.8); position: absolute; left: 10%; top: 60%;" id="city-name5"></p>
 
 		    
 		</header>
@@ -116,7 +116,7 @@
 				});				
 			    //--------------------------------------------------
 				
-				//input, display weather--------------------
+				//input, enter, display weather, then save--------------------
 			    var infoWindow3 = new google.maps.InfoWindow({map: map});
 				marker3 = new google.maps.Marker({
 					map: map,
@@ -151,6 +151,17 @@
 							infoWindow3.open(map, marker3);	
 						    map.panTo(inputLatlng);
 						    map.setZoom(6);
+
+							var xmlhttp = new XMLHttpRequest();
+							xmlhttp.onreadystatechange = function() {
+							 if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+							     // document.getElementById("txtHint").innerHTML = xmlhttp.responseText;
+							 }
+							}
+
+							var saveString = city + ": " + ((data2.main.temp - 273.15).toFixed(2)) + "°C" + ", " + Date();
+							xmlhttp.open("GET", "backSave.php?q="+saveString, true);
+							xmlhttp.send();
 						});
 					}
 				}
