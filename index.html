@@ -4,8 +4,8 @@
 		<title>weather</title>
 		<meta name="viewport" content="initial-scale=1.0, user-scalable=no">
 		<meta charset="utf-8">
-		<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCyxCKbcngJdOCjgP1-UnRIhEBIc-tIVtM&signed_in=true&callback=initMap"
-	        async defer>
+		<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCyxCKbcngJdOCjgP1-UnRIhEBIc-tIVtM&libraries=places&signed_in=true&callback=initMap"
+         async defer></script>	        
 	    </script>
 
 		<style type="text/css">
@@ -74,8 +74,8 @@
 			var cityName3 = document.getElementById("city-name3");
 			var cityName5 = document.getElementById("city-name4");
 			var cityName4 = document.getElementById("city-name5");
-			var cityGo = document.getElementById("city-go");
 			var city = -1;
+
 			
 			var pos = {
 				lat: -1,
@@ -87,6 +87,8 @@
 			        center: {lat: 40.7127, lng: -74.0059},
 			    	zoom: 4
 			    });
+
+			    var searchBox = new google.maps.places.SearchBox(cityInput);
 
 
 			    //click, drop a marker with infoWindow--------------------
@@ -126,14 +128,21 @@
 				});				
 				cityInput.addEventListener("input", cityDisplay);
 				function cityDisplay() {
+					// console.log(cityInput.value);
 					city = cityInput.value;
+					if (city.indexOf(",") > 0) {
+						var i = city.indexOf(",");
+						city = city.substring(0, i);
+					}
 				    cityName1.innerHTML = 'input: ' + city;
 				}
 				cityInput.onkeypress = function(e) {
+					// console.log(cityInput.value);
 				    var event = e || window.event;
 				    var charCode = event.which || event.keyCode;
 
 				    if ( charCode == '13' ) {
+				      cityDisplay();
 				      weatherDispaly();
 				    }
 				}
@@ -159,7 +168,7 @@
 							 }
 							}
 
-							var saveString = city + ": " + ((data2.main.temp - 273.15).toFixed(2)) + "°C" + ", " + Date();
+							var saveString = (data2.name) + ": " + ((data2.main.temp - 273.15).toFixed(2)) + "°C" + ", " + Date();
 							xmlhttp.open("GET", "backSave.php?q="+saveString, true);
 							xmlhttp.send();
 						});
