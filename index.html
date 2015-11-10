@@ -164,13 +164,12 @@
 							var xmlhttp = new XMLHttpRequest();
 							xmlhttp.onreadystatechange = function() {
 							 if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-							     // document.getElementById("txtHint").innerHTML = xmlhttp.responseText;
+							     cityName2.innerHTML = xmlhttp.responseText;
 							 }
 							}
 
-							var saveString = (data2.name) + ": " + ((data2.main.temp - 273.15).toFixed(2)) + "°C" + ", " + Date();
-							xmlhttp.open("GET", "backSave.php?q="+saveString, true);
-							xmlhttp.send();
+							xmlhttp.open("GET", "back_mysql_1.php?userid=" + '001' + "&city=" + (data2.name) + "&temp=" + ((data2.main.temp - 273.15).toFixed(0)) + "&time=" + '2015-11-11 11:11:11', true);
+							xmlhttp.send();						
 						});
 					}
 				}
